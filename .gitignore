@@ -1,0 +1,35 @@
+# Local build output and machine config (Android wrapper)
+.gradle/
+build/
+app/build/
+android/.gradle/
+android/build/
+android/app/build/
+local.properties
+android/local.properties
+
+# Signing material: never commit or publish the keystore or its passwords.
+keystore/
+android/keystore/
+*.jks
+*.keystore
+keystore.properties
+
+# Built app packages (build them locally; do not vendor binaries)
+*.apk
+*.aab
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor and IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*~
+
+# Python caches (icon tools)
+__pycache__/
+*.pyc

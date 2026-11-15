@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Casino Games</string>
+    <string name="error_title">No connection</string>
+    <string name="error_message">Casino Games needs the internet to load. Check your connection and try again.</string>
+    <string name="retry">Retry</string>
+</resources>
