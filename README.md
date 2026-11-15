@@ -172,9 +172,15 @@ permissions Internet and view network state only.
 
 | Path | What it is |
 |---|---|
-| `index.html` | The whole game, one file: lobby, all 169 games, profiles, stats |
+| `index.html` | Lobby markup and all 169 game screens; loads the styles and scripts below in order |
+| `css/` | 11 stylesheets: base, header, profiles, lobby, screens, game styles, install, phone fixes (see `docs/STRUCTURE.md`) |
+| `js/core/` | Shared logic: helpers, storage, profiles, balance, sound, lobby, navigation, stats |
+| `js/maths/` | Game maths: slot engine, shared helpers, card evaluators, game engines |
+| `js/games/` | Game logic: games 1-69, engagement, mind engines, instantiations |
+| `js/app/` | Screens and startup: init, lobby sections, profiles UI, install, first launch |
 | `manifest.json` | Web app manifest for install-as-app |
 | `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` | Original chip-and-star app icons (see note below) |
+| `docs/STRUCTURE.md` | Folder hierarchy, file load order, and the rules for editing safely |
 | `docs/GAME-CATALOG.md` | All 169 games with category, sub-category and stated RTP |
 | `docs/FAIRNESS.md` | House-edge method, stats recording and verification notes |
 | `docs/DEPLOYMENT.md` | HuggingFace Space, GitHub Pages and APK build steps |

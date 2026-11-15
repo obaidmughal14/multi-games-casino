@@ -1,0 +1,69 @@
+:root {
+  --bg: #06080e;
+  --bg2: #0a0e18;
+  --panel: #101625;
+  --panel2: #0c1220;
+  --line: #232c42;
+  --gold: #f5c542;
+  --gold2: #ffe082;
+  --gold-d: #b8860b;
+  --teal: #19e3c2;
+  --red: #ff4757;
+  --green: #2ed573;
+  --ink: #eef2f8;
+  --mut: #96a3ba;
+  --violet: #8e6bf1;
+  --rad: 14px;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    "Barlow",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  background-image:
+    radial-gradient(900px 480px at 15% -80px, rgba(245, 197, 66, 0.13), transparent 60%),
+    radial-gradient(900px 520px at 85% -60px, rgba(25, 227, 194, 0.1), transparent 60%),
+    radial-gradient(700px 500px at 50% 110%, rgba(255, 71, 87, 0.07), transparent 60%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0 90px, transparent 90px 180px);
+  min-height: 100vh;
+}
+h1,
+h2,
+h3,
+.disp {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+button,
+[role="button"],
+select,
+summary,
+input:not([type="checkbox"], [type="radio"]) {
+  min-height: 2.25rem;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 14px 40px;
+}
+

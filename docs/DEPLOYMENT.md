@@ -1,8 +1,9 @@
 # Deployment - HuggingFace Space, GitHub Pages, and the Android APK
 
 Everything here is free to build and run. There is no server code, no
-database, and no build step for the website: the game is one HTML file
-plus a manifest and icons, served as static files.
+database, and no build step for the website: the game is a folder of
+static files - `index.html` plus `css/` stylesheets and `js/` scripts -
+served as they are. See `docs/STRUCTURE.md` for the folder layout.
 
 Live website: https://obaidasiaone-multi-games-casino.static.hf.space
 
@@ -13,7 +14,9 @@ names:
 
 | File | Required | Notes |
 |---|---|---|
-| `index.html` | Yes | The whole game |
+| `index.html` | Yes | The lobby and all game screens; loads the files below in order |
+| `css/` (11 files) | Yes | All stylesheets; keep the folder and file names exactly |
+| `js/` (28 files) | Yes | All scripts in `core/`, `maths/`, `games/` and `app/`; keep the folder and file names exactly |
 | `manifest.json` | Yes, for install | Names the icons below; without it, install-as-app does not appear |
 | `icon-192.png` | Yes, for install | 192 x 192 app icon |
 | `icon-512.png` | Yes, for install | 512 x 512 app icon |
@@ -59,19 +62,20 @@ update it:
    The `sdk: static` line is what makes HuggingFace serve the files as
    a static site. `colorFrom` and `colorTo` must use colors from
    HuggingFace's allowed palette; yellow and green are accepted.
-3. Upload `index.html`, `manifest.json` and the four icon files into
-   the Space (web upload, or `git push` to the Space repo, or the
-   HuggingFace Hub upload tools). Keep the file names exactly as
-   listed above, in the Space root. Also upload `Casino_Games_v1.apk`
+3. Upload `index.html`, the `css/` and `js/` folders, `manifest.json`
+   and the four icon files into the Space (web upload, or `git push`
+   to the Space repo, or the HuggingFace Hub upload tools). Keep the
+   folder structure and file names exactly as listed above, in the
+   Space root. Also upload `Casino_Games_v1.apk`
    (built from `android/`, see the APK section below) into the Space
    root: the Install screen links to it for the Android direct
    download, and it is not part of the text-only GitHub push.
 4. Wait for the Space to build, then open the Space URL and check: the
    lobby loads, a casino game opens and plays, a mind game opens, the
    Install app screen appears, and House Stats shows on the lobby.
-5. To update the live site, replace `index.html` (and any changed icons
-   or manifest) in the Space and wait for the rebuild. There is no
-   separate build step.
+5. To update the live site, replace the changed files (`index.html`,
+   `css/`, `js/`, icons or manifest) in the Space and wait for the
+   rebuild. There is no separate build step.
 
 Notes:
 
@@ -87,8 +91,8 @@ Notes:
 
 The same files deploy to GitHub Pages from this repo, free:
 
-1. Make sure the repo has `index.html`, `manifest.json` and the four
-   icon files at the repo root. Note: the first GitHub push of this
+1. Make sure the repo has `index.html`, the `css/` and `js/` folders,
+   `manifest.json` and the four icon files at the repo root. Note: the first GitHub push of this
    repo used a text-only route that could not carry the PNG icons, so
    if the icons are missing from GitHub, add them through a normal
    `git push` or the GitHub web upload, or regenerate them locally

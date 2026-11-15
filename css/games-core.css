@@ -1,0 +1,637 @@
+/* ---------- slots ---------- */
+.machine {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.machine .mhead {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.readout {
+  background: #05070c;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  min-width: 118px;
+  text-align: center;
+}
+.readout small {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--mut);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.readout .v {
+  color: var(--gold2);
+  font-size: 1.05rem;
+}
+.readout .v.tealv {
+  color: var(--teal);
+}
+.reelgrid {
+  display: grid;
+  gap: 7px;
+}
+.cell {
+  background: linear-gradient(180deg, #1a2236, #0d1322);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.cell svg.sym {
+  width: 72%;
+  height: 72%;
+}
+.cell .symtxt {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 5vw, 1.7rem);
+  line-height: 1;
+  text-align: center;
+}
+.cell.win {
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 0 18px rgba(245, 197, 66, 0.55);
+  animation: cellwin 0.5s ease infinite alternate;
+}
+@keyframes cellwin {
+  from {
+    background: #1a2236;
+  }
+  to {
+    background: #3a2c07;
+  }
+}
+.cell.dim {
+  opacity: 0.38;
+}
+.fsbanner {
+  display: none;
+  margin: 0 auto 12px;
+  max-width: 640px;
+  text-align: center;
+  background: rgba(25, 227, 194, 0.12);
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-weight: 700;
+}
+.fsbanner.on {
+  display: block;
+}
+.jpmeters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  max-width: 680px;
+  margin: 0 auto 14px;
+}
+.jpm {
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid var(--line);
+  background: #05070c;
+}
+.jpm small {
+  display: block;
+  letter-spacing: 0.16em;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.jpm .amt {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+.jpm.mini .amt {
+  color: #7dd3fc;
+}
+.jpm.minor .amt {
+  color: var(--teal);
+}
+.jpm.major .amt {
+  color: var(--violet);
+}
+.jpm.grand .amt {
+  color: var(--gold);
+}
+.jpm.grand {
+  border-color: var(--gold-d);
+  box-shadow: 0 0 16px rgba(245, 197, 66, 0.25);
+}
+
+/* ---------- roulette ---------- */
+.roul-wrap {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.wheelbox {
+  position: relative;
+  width: min(80vw, 320px);
+  aspect-ratio: 1/1;
+  flex: none;
+}
+.rwheel {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 8px solid #3a2a12;
+  box-shadow:
+    0 0 0 2px var(--gold-d),
+    0 14px 34px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(245, 197, 66, 0.15);
+}
+.rwheel .hub {
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #3d465e, #141a29);
+  border: 2px solid var(--gold-d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Oswald", sans-serif;
+  color: var(--gold2);
+  font-size: 1rem;
+  text-align: center;
+  z-index: 3;
+}
+.rnum {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.rnum b {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.66rem;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px #000;
+}
+.rpointer {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 16px solid var(--gold);
+}
+.rball-ring {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.rball {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #aab4c4);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+.rboardbox {
+  flex: 1 1 340px;
+  min-width: min(100%, 330px);
+  max-width: 560px;
+}
+.rboard {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  gap: 3px;
+}
+.spot {
+  position: relative;
+  border: 1px solid var(--line);
+  background: #131b2e;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 8px 0;
+  min-height: 2.4rem;
+}
+.spot.r {
+  background: #a11f28;
+}
+.spot.b {
+  background: #171a21;
+}
+.spot.g {
+  background: #0d7a43;
+}
+.spot.zero {
+  grid-row: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.spot.sel {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.spot .amt {
+  position: absolute;
+  top: -7px;
+  right: -4px;
+  background: var(--gold);
+  color: #191104;
+  font-size: 0.62rem;
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-weight: 800;
+  z-index: 2;
+}
+.rrow2 {
+  display: flex;
+  gap: 3px;
+  margin-top: 3px;
+}
+.rrow2 .spot {
+  flex: 1;
+}
+.rchips {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.rchip {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px dashed rgba(255, 255, 255, 0.65);
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #fff;
+}
+.rchip.c10 {
+  background: #2563eb;
+}
+.rchip.c25 {
+  background: #0d7a43;
+}
+.rchip.c50 {
+  background: #a11f28;
+}
+.rchip.c100 {
+  background: #1f2430;
+}
+.rchip.c500 {
+  background: #7c3aed;
+}
+.rchip.on {
+  box-shadow: 0 0 0 3px var(--gold);
+  transform: scale(1.08);
+}
+.rlast {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  align-items: center;
+}
+.rlast .n {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+.rlast .n.r {
+  background: #a11f28;
+}
+.rlast .n.b {
+  background: #23262e;
+}
+.rlast .n.g {
+  background: #0d7a43;
+}
+
+/* ---------- blackjack ---------- */
+.bjtable {
+  background:
+    radial-gradient(600px 300px at 50% 0%, rgba(25, 227, 194, 0.1), transparent 70%),
+    linear-gradient(180deg, #0d2b23, #081a15);
+  border: 1px solid #14532d;
+  border-radius: 16px;
+  padding: 16px 12px;
+}
+.bjzone {
+  margin-bottom: 8px;
+}
+.bjzone .who {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mut);
+  font-weight: 700;
+  margin-bottom: 7px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.scorebadge {
+  background: var(--gold);
+  color: #191104;
+  border-radius: 999px;
+  padding: 1px 10px;
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+.hand {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  min-height: 86px;
+}
+.pcard {
+  width: 60px;
+  height: 84px;
+  background: #f7f5ef;
+  color: #14161c;
+  border-radius: 8px;
+  padding: 5px 7px;
+  font-weight: 700;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  font-size: 1rem;
+  line-height: 1.1;
+}
+.pcard .suit {
+  font-size: 1.25rem;
+}
+.pcard.red {
+  color: #c0272d;
+}
+.pcard.back {
+  background: repeating-linear-gradient(45deg, #7c1d24 0 7px, #a11f28 7px 14px);
+  border: 2px solid #e8e2d2;
+  color: transparent;
+}
+.pcard.dealt {
+  animation: deal 0.3s ease;
+}
+@keyframes deal {
+  from {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ---------- mines ---------- */
+.minesgrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  max-width: 430px;
+  margin: 0 auto;
+}
+.tile {
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #1b2438, #101828);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.tile svg {
+  width: 58%;
+  height: 58%;
+}
+.tile:not(:disabled):hover {
+  border-color: var(--teal);
+}
+.tile.open {
+  background: #0b2e25;
+  border-color: var(--teal);
+}
+.tile.boom {
+  background: #3d0d13;
+  border-color: var(--red);
+}
+.tile.revealed-mine {
+  background: #1c1420;
+  opacity: 0.85;
+}
+.minesstat {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+select.inp {
+  background: var(--bg2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: 600;
+}
+
+/* ---------- crash ---------- */
+.crashsky {
+  position: relative;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a1030 0%, #101a3d 55%, #1b1030 100%);
+  border: 1px solid var(--line);
+}
+.crashsky .stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 12% 22%, #fff, transparent),
+    radial-gradient(2px 2px at 32% 64%, #cfe4ff, transparent),
+    radial-gradient(1.5px 1.5px at 58% 18%, #fff, transparent),
+    radial-gradient(2px 2px at 76% 44%, #ffe9a8, transparent),
+    radial-gradient(1.5px 1.5px at 88% 74%, #fff, transparent),
+    radial-gradient(2px 2px at 45% 82%, #cfe4ff, transparent),
+    radial-gradient(1.5px 1.5px at 66% 88%, #fff, transparent),
+    radial-gradient(2px 2px at 22% 44%, #fff, transparent);
+}
+.crashmult {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(2.2rem, 8vw, 3.4rem);
+  font-weight: 700;
+  color: var(--teal);
+  text-shadow: 0 0 24px rgba(25, 227, 194, 0.5);
+  font-variant-numeric: tabular-nums;
+  z-index: 3;
+}
+.crashmult.crashed {
+  color: var(--red);
+  text-shadow: 0 0 24px rgba(255, 71, 87, 0.55);
+}
+.rocket {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  left: 4%;
+  bottom: 6%;
+  z-index: 2;
+  transition: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+.rocket.boom {
+  animation: boom 0.5s ease forwards;
+}
+@keyframes boom {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.1) rotate(24deg);
+    opacity: 0;
+  }
+}
+.crashtrail {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  width: 0%;
+  z-index: 1;
+}
+.histrow {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  align-items: center;
+}
+.histchip {
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  border: 1px solid var(--line);
+  background: var(--panel2);
+  font-variant-numeric: tabular-nums;
+}
+.histchip.hi {
+  color: var(--teal);
+  border-color: #0a7a67;
+}
+.histchip.lo {
+  color: #ff8b96;
+  border-color: #7c2430;
+}
+
+/* ---------- lucky wheel ---------- */
+.wheelwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.wwheelbox {
+  position: relative;
+  width: min(82vw, 340px);
+  aspect-ratio: 1/1;
+}
+.wwheel {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 9px solid #3a2a12;
+  box-shadow:
+    0 0 0 2px var(--gold-d),
+    0 16px 36px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(245, 197, 66, 0.16);
+}
+.wseg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.wseg b {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Oswald", sans-serif;
+  font-size: 0.95rem;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+.whub {
+  position: absolute;
+  inset: 38%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ffe082, #c9930a);
+  border: 2px solid #7c5a06;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  color: #231a02;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.wpointer {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 18px solid var(--red);
+}
+

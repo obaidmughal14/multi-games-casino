@@ -1,0 +1,145 @@
+/* ---------- v7: mobile tester fixes - phones only, desktop unchanged ---------- */
+@media (max-width: 560px) {
+  /* Compact sticky header: badge on its own row, then essentials. The
+           Switch and Create header buttons are hidden here only because the
+           player chip opens the Switch screen, which has a Create button.
+           The header Install button is hidden here only because the lobby
+           install strip and the Profile setup screen both offer Install.
+           The session pill is hidden here only because the lobby session
+           note shows the same time. Nothing is removed on desktop. */
+  .topbar-in {
+    gap: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .funbadge {
+    width: 100%;
+    text-align: center;
+    font-size: 0.66rem;
+    padding: 4px 8px;
+  }
+  .topbar-in .spacer {
+    display: none;
+  }
+  #switchProfileBtn,
+  #createProfileBtn,
+  #installBtnHeader,
+  .sesspill {
+    display: none !important;
+  }
+  .topbar-in .btn.small {
+    padding: 5px 11px;
+    font-size: 0.86rem;
+  }
+  .pchip {
+    padding: 3px 12px 3px 5px;
+  }
+  .balpill {
+    padding: 4px 12px 4px 8px;
+  }
+  /* Search and filters: no longer sticky on phones (the old 316px
+           sticky bar hid behind the header). Search takes a full row and
+           the filter pills scroll sideways in one row. */
+  .lobbyctl {
+    position: static;
+    padding: 6px 2px;
+  }
+  .searchbox {
+    flex: 1 1 100%;
+  }
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+  .fbtn {
+    flex: none;
+  }
+  /* Featured cards use the same two-column compact layout as the
+           rest of the lobby instead of one tall card per row. */
+  .grid.feat {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid.feat .card .art {
+    height: 110px;
+  }
+  .grid.feat .card .art svg.big {
+    width: 96px;
+    height: 96px;
+  }
+  .card h3 {
+    font-size: 1rem;
+  }
+  .card p {
+    display: block;
+    min-height: 0;
+    line-height: 1.4;
+    max-height: 2.8em;
+    max-height: 2lh;
+    overflow: hidden;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+  }
+  .card .body {
+    padding: 10px 12px 12px;
+  }
+  /* Tighter lobby panels so games appear sooner on a phone. */
+  .tickerbar {
+    padding: 9px 12px;
+    gap: 8px;
+    margin: 10px 0 2px;
+  }
+  .sessionbar {
+    padding: 8px 12px;
+  }
+  .installstrip {
+    padding: 10px 12px;
+    gap: 8px;
+    margin: 10px 0 2px;
+  }
+  .secttl {
+    margin: 16px 0 8px;
+  }
+  .engage {
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .engcard {
+    padding: 12px;
+  }
+  .herohead {
+    margin: 14px 0 4px;
+  }
+  .herohead p {
+    font-size: 0.92rem;
+  }
+  .subttl {
+    margin: 14px 0 6px;
+  }
+  /* Bigger mind-game answer buttons for thumbs: two per row,
+           taller, larger text. Longer word options wrap as before. */
+  .mindopts {
+    gap: 10px;
+  }
+  .mindopts .optbtn {
+    flex: 1 1 40%;
+    padding: 14px 10px;
+    font-size: 1.2rem;
+    min-height: 52px;
+  }
+  .readout small {
+    font-size: 0.7rem;
+  }
+}
+/* v8: tester fixes - keep long sub-category chips clear of the New/Hot badge. */
+.card .art .tagchip {
+  max-width: 56%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

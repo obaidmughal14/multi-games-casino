@@ -1,0 +1,298 @@
+/* ---------- jackpot ticker ---------- */
+.tickerbar {
+  margin: 14px 0 4px;
+  border: 1px solid var(--gold-d);
+  border-radius: var(--rad);
+  background: linear-gradient(
+    90deg,
+    rgba(245, 197, 66, 0.14),
+    rgba(255, 71, 87, 0.1) 50%,
+    rgba(25, 227, 194, 0.12)
+  );
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  box-shadow: 0 0 24px rgba(245, 197, 66, 0.14);
+}
+.tickerbar .lbl {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold2);
+  font-size: 0.85rem;
+}
+.mega {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1.5rem, 4.5vw, 2.3rem);
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(245, 197, 66, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+.tickerbar .sub {
+  color: var(--mut);
+  font-size: 0.85rem;
+}
+
+.herohead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 18px 0 6px;
+  flex-wrap: wrap;
+}
+.herohead h1 {
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  text-transform: uppercase;
+}
+.herohead h1 .g {
+  color: var(--gold);
+}
+.herohead h1 .t {
+  color: var(--teal);
+}
+.herohead p {
+  color: var(--mut);
+  margin: 4px 0 0;
+  max-width: 56ch;
+}
+
+/* ---------- lobby controls ---------- */
+.lobbyctl {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 14px 0 6px;
+}
+.searchbox {
+  flex: 1 1 210px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 12px;
+}
+.searchbox input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  padding: 9px 0;
+}
+.searchbox input:focus {
+  outline: none;
+}
+.searchbox svg {
+  flex: none;
+  opacity: 0.7;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.fbtn {
+  border: 1px solid var(--line);
+  background: var(--panel2);
+  color: var(--mut);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-weight: 600;
+}
+.fbtn.on {
+  color: #14100a;
+  background: linear-gradient(180deg, var(--gold2), var(--gold));
+  border-color: #8a6508;
+}
+.secttl {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 20px 0 10px;
+  color: var(--ink);
+}
+.secttl span {
+  color: var(--gold);
+}
+
+/* ---------- game cards ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.grid.feat {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+.card {
+  background: linear-gradient(180deg, var(--panel), var(--panel2));
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card .art {
+  height: 138px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.grid.feat .card .art {
+  height: 168px;
+}
+.card .art svg.big {
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+}
+.grid.feat .card .art svg.big {
+  width: 118px;
+  height: 118px;
+}
+.card .art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px 150px at 50% 120%, rgba(255, 255, 255, 0.13), transparent 65%);
+}
+.art.a-gold {
+  background:
+    radial-gradient(300px 160px at 50% 0%, rgba(245, 197, 66, 0.4), transparent 70%),
+    linear-gradient(160deg, #2a1e05, #131022);
+}
+.art.a-teal {
+  background:
+    radial-gradient(300px 160px at 50% 0%, rgba(25, 227, 194, 0.35), transparent 70%),
+    linear-gradient(160deg, #04231d, #0d1526);
+}
+.art.a-red {
+  background:
+    radial-gradient(300px 160px at 50% 0%, rgba(255, 71, 87, 0.38), transparent 70%),
+    linear-gradient(160deg, #2b0a12, #101426);
+}
+.art.a-violet {
+  background:
+    radial-gradient(300px 160px at 50% 0%, rgba(142, 107, 241, 0.4), transparent 70%),
+    linear-gradient(160deg, #1b1033, #0d1526);
+}
+.tagchip {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--line);
+  color: var(--gold2);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.hotchip {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: var(--red);
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+.card .body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.card h3 {
+  font-size: 1.15rem;
+}
+.card p {
+  color: var(--mut);
+  font-size: 0.9rem;
+  margin: 0;
+  flex: 1;
+}
+.card .play {
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* ---------- wins ticker ---------- */
+.winsbar {
+  margin-top: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  background: var(--panel2);
+  overflow: hidden;
+}
+.winsbar .hd {
+  padding: 8px 14px;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  color: var(--teal);
+  border-bottom: 1px solid var(--line);
+}
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 9px 0;
+}
+.marquee .track {
+  display: inline-block;
+  padding-left: 0;
+  animation: mq 36s linear infinite;
+  will-change: transform;
+}
+.marquee span {
+  margin: 0 26px;
+  color: var(--mut);
+  font-size: 0.92rem;
+}
+.marquee b {
+  color: var(--gold);
+}
+@keyframes mq {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+footer {
+  margin-top: 26px;
+  color: var(--mut);
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.6;
+}
+footer .disc {
+  height: auto;
+  background: none;
+  border: 1px dashed var(--gold-d);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--gold2);
+  font-weight: 600;
+}
+
