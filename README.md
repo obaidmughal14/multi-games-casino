@@ -179,6 +179,8 @@ permissions Internet and view network state only.
 | `js/games/` | Game logic: games 1-69, engagement, mind engines, instantiations |
 | `js/app/` | Screens and startup: init, lobby sections, profiles UI, install, first launch |
 | `manifest.json` | Web app manifest for install-as-app |
+| `robots.txt` | Allows all crawlers; points search engines to the sitemap |
+| `sitemap.xml` | Single-URL sitemap for search engines (the homepage) |
 | `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` | Original chip-and-star app icons (see note below) |
 | `docs/STRUCTURE.md` | Folder hierarchy, file load order, and the rules for editing safely |
 | `docs/GAME-CATALOG.md` | All 169 games with category, sub-category and stated RTP |

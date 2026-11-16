@@ -296,3 +296,17 @@ footer .disc {
   font-weight: 600;
 }
 
+/* ---------- about and FAQ (lobby) ---------- */
+.seofaq {
+  margin-top: 26px;
+}
+.seofaq p {
+  color: var(--mut);
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+.seofaq h3 {
+  font-size: 1.05rem;
+  margin: 16px 0 4px;
+  color: var(--gold2);
+}

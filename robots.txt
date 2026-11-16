@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://obaidasiaone-multi-games-casino.static.hf.space/sitemap.xml

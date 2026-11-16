@@ -17,6 +17,8 @@ names:
 | `index.html` | Yes | The lobby and all game screens; loads the files below in order |
 | `css/` (11 files) | Yes | All stylesheets; keep the folder and file names exactly |
 | `js/` (28 files) | Yes | All scripts in `core/`, `maths/`, `games/` and `app/`; keep the folder and file names exactly |
+| `robots.txt` | Recommended | Allows all crawlers and points to the sitemap (note: HuggingFace serves its own default robots file for Spaces, so submit the sitemap directly in Search Console) |
+| `sitemap.xml` | Recommended | Single-URL sitemap; submit its URL in Google Search Console |
 | `manifest.json` | Yes, for install | Names the icons below; without it, install-as-app does not appear |
 | `icon-192.png` | Yes, for install | 192 x 192 app icon |
 | `icon-512.png` | Yes, for install | 512 x 512 app icon |
