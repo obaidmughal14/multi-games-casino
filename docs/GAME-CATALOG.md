@@ -1,4 +1,4 @@
-# Game catalog - all 169 games
+# Game catalog - all 170 games
 
 Every game in Multi Games Casino, derived from the lobby cards
 and the RTP table in `index.html`. RTP strings are copied exactly
@@ -7,9 +7,9 @@ or aim counts. Nothing here is estimated or invented: if the page
 does not state an RTP for a game, this catalog does not state one
 either. Mind games are free, use no fun credits, and have no RTP.
 
-Counts: Slots 24, Table 30, Dice 14, Wheel 3, Crash and Climb 13,
+Counts: Slots 25, Table 30, Dice 14, Wheel 3, Crash and Climb 13,
 Arcade and Skill 15, Fishing 4, Bingo and Lottery 12,
-Video Poker 4, Mind 50. Total 169 games: 119 casino games plus
+Video Poker 4, Mind 50. Total 170 games: 120 casino games plus
 50 mind games.
 
 House edge is 100 minus RTP for the stated figure. Each casino
@@ -17,10 +17,11 @@ game screen also shows its own bet limits, pay table, RTP and
 house edge in its How to play panel before you play. See
 `docs/FAIRNESS.md` for how the edge is built and how to verify it.
 
-## Slots (24)
+## Slots (25)
 
 | Game | Sub-category | RTP as stated on the page | About |
 |---|---|---|---|
+| Prairie Thunder | Video Slots | RTP about 96% | 5 x 4 reels, 1024 ways to win on fixed 60-stop strips with stacked symbols. Three or more coin scatters trigger 8 free games at 2 x or 3 x, retriggerable; five coins pay a 100 x bet jackpot bonus. |
 | Fruit Fortune Slots | Video Slots | RTP about 96% | 5 x 3 fruit reels with a wild star. Three gem scatters trigger 8 free spins. |
 | Golden Coins Slots | Jackpot Slots | RTP about 95% | Coins, ingots and lucky charms, plus Mini, Minor, Major and Grand jackpots. |
 | Lucky 7s Classic | Classic Slots | RTP about 95% | Old-school 3-reel, one payline. Three red 7s pay 500 x your bet. |
@@ -241,9 +242,9 @@ house edge in its How to play panel before you play. See
 - The lobby also shows 4 featured cards at the top (Fruit Fortune
   Slots, Golden Coins Slots, Roulette, Fishing Frenzy). They are
   shortcuts to the same games listed above, not extra games, so
-  the card count on the page is 173 while the game count is 169.
+  the card count on the page is 174 while the game count is 170.
 - Screen ids (`scr-fruit`, `scr-blackjack`, and so on) are the
-  internal section ids in `index.html`. Every one of the 169 ids
+  internal section ids in `index.html`. Every one of the 170 ids
   in this catalog matches a section in the page.
 - RTP values marked about are design targets from the pay table
   construction. Short sessions vary a lot: a single round or

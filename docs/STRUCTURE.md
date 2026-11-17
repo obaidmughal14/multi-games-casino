@@ -7,7 +7,7 @@ exact order they load. That order matters: scripts share one global
 scope, and a file may only use names defined by the files before it.
 
 ```
-index.html            Lobby markup and all 169 game screens
+index.html            Lobby markup and all 170 game screens
 manifest.json         Web app manifest for install-as-app
 css/
   base.css            Variables, reset, page layout, shared utilities
@@ -50,7 +50,7 @@ js/
     games-49-69.js    Games 49-69 (Four Card Poker through Virtual Football)
     neon-nights.js    Neon Nights custom slot (win re-spins)
     mind-engines.js   Mind game scaffold and memory, word, logic, focus engines
-    instantiations.js Games 70-119 casino and 120-169 mind instantiations
+    instantiations.js Games 70-119 casino plus Prairie Thunder, and 120-169 mind instantiations
   app/                Screens and startup
     init.js           First balance render
     lobby-sections.js Lobby section counts and session-time note

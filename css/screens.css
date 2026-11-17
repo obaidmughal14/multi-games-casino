@@ -30,6 +30,11 @@
 .stage.glow-gold {
   box-shadow: 0 0 34px rgba(245, 197, 66, 0.14);
 }
+.stage.sunset {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 190, 80, 0.4), rgba(255, 190, 80, 0) 55%),
+    linear-gradient(180deg, #3a1c5a 0%, #8a2f47 45%, #c65a1e 78%, #e8912d 100%);
+}
 .stage.glow-teal {
   box-shadow: 0 0 34px rgba(25, 227, 194, 0.13);
 }
@@ -213,4 +218,3 @@
     transform: scale(1);
   }
 }
-

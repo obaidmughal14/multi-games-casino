@@ -125,6 +125,7 @@ var STAT_GAMES = [
   ["tennis", "Tennis Tiebreak"],
   ["cointower", "Coin Tower"],
   ["vault", "Prize Vault"],
+  ["prairie", "Prairie Thunder"],
 ];
 function blankStats() {
   var s = { wagered: 0, paid: 0, rounds: 0, games: {} };
@@ -232,4 +233,3 @@ function histLine(bet, ret) {
     return "Bet <b>" + fmt(bet) + '</b> - got back <span class="hw">' + fmt(ret) + "</span>";
   return "Bet <b>" + fmt(bet) + '</b> - <span class="hl">lost</span>';
 }
-

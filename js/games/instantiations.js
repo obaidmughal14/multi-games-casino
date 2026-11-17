@@ -1,5 +1,5 @@
 "use strict";
-/* ================= games 70-119: casino instantiations ================= */
+/* ================= games 70-119 and Prairie Thunder: casino instantiations ================= */
 SYM_SVG.mnsc = "s-star";
 SYM_SVG.azsc = "s-bell";
 SYM_SVG.vksc = "s-crown";
@@ -105,6 +105,258 @@ nxSlot({
   weights: nxW(["pearl", "coin", "ingot", "chest", "map"], "tmsc"),
   pay: nxPay(NX_PAY, ["pearl", "coin", "ingot", "chest", "map"]),
   pickmap: true,
+});
+/* ================= Prairie Thunder: 1024-ways engine =================
+   5 reels x 4 rows. Each reel spins on a fixed 60-stop strip with stacked
+   symbols; wins pay on 1024 ways. Free games pay 2 x or 3 x per spin.
+   The strip and paytable must stay identical to
+   ~/workspace/mobile-audit/prairie-ways-rtp-sim.js (table K, about 95.5%). */
+var PRAIRIE_RUNS = [
+  ["clover", 3],
+  ["amber", 3],
+  ["bison", 3],
+  ["lantern", 2],
+  ["clover", 3],
+  ["wild", 2],
+  ["amber", 3],
+  ["ruby", 2],
+  ["clover", 2],
+  ["lantern", 2],
+  ["bison", 2],
+  ["amber", 2],
+  ["prsc", 1],
+  ["clover", 3],
+  ["ruby", 2],
+  ["amber", 3],
+  ["lantern", 2],
+  ["wild", 1],
+  ["clover", 3],
+  ["amber", 2],
+  ["ruby", 1],
+  ["lantern", 1],
+  ["clover", 2],
+  ["wild", 1],
+  ["amber", 1],
+  ["lantern", 1],
+  ["prsc", 1],
+  ["ruby", 1],
+  ["clover", 1],
+  ["lantern", 1],
+  ["lantern", 1],
+  ["clover", 1],
+  ["ruby", 1],
+];
+var PRAIRIE_STRIP = [];
+PRAIRIE_RUNS.forEach(function (r) {
+  for (var i = 0; i < r[1]; i++) PRAIRIE_STRIP.push(r[0]);
+});
+function stripGrid(strip) {
+  var g = [[], [], [], []];
+  for (var c = 0; c < 5; c++) {
+    var start = Math.floor(Math.random() * strip.length);
+    for (var r = 0; r < 4; r++) g[r][c] = strip[(start + r) % strip.length];
+  }
+  return g;
+}
+function evalWays(grid, pay, unit, wildCode) {
+  var total = 0,
+    winCells = [];
+  Object.keys(pay).forEach(function (sym) {
+    var counts = [];
+    for (var c = 0; c < 5; c++) {
+      var n = 0;
+      for (var r = 0; r < 4; r++) {
+        var cell = grid[r][c];
+        if (cell === sym || (sym !== wildCode && cell === wildCode)) n++;
+      }
+      counts.push(n);
+    }
+    var len = 0;
+    while (len < 5 && counts[len] > 0) len++;
+    if (len >= 3) {
+      var ways = 1;
+      for (var i = 0; i < len; i++) ways *= counts[i];
+      total += pay[sym][len - 3] * ways * unit;
+      for (var c2 = 0; c2 < len; c2++)
+        for (var r2 = 0; r2 < 4; r2++) {
+          var cell2 = grid[r2][c2];
+          if (cell2 === sym || (sym !== wildCode && cell2 === wildCode))
+            winCells.push(r2 + "-" + c2);
+        }
+    }
+  });
+  return { total: total, winCells: winCells };
+}
+function waysSlot(cfg) {
+  var cells = buildCells(nxEl(cfg.key + "Grid"), 4, 5);
+  var st = { spinning: false, fs: 0, fsBet: 100, fsWin: 0, curMult: 1, fsActive: false };
+  function setG(g) {
+    for (var r = 0; r < 4; r++)
+      for (var c = 0; c < 5; c++) cells[r][c].innerHTML = symHTML(g[r][c]);
+  }
+  setG(stripGrid(cfg.strip));
+  var spinBtn = nxEl(cfg.key + "Spin");
+  function fsBanner() {
+    var b = nxEl(cfg.key + "Fs");
+    if (!b) return;
+    if (st.fs > 0) {
+      b.classList.add("on");
+      b.textContent =
+        "Free games left: " +
+        st.fs +
+        (st.fsActive ? " - this spin pays " + st.curMult + " x" : "") +
+        " - won so far: " +
+        fmt(st.fsWin);
+    } else b.classList.remove("on");
+  }
+  function settle(bet, total, mode, extra) {
+    nxEl(cfg.key + "Win").textContent = fmt(total);
+    if (mode === "fs") st.fsWin += total;
+    if (total > 0) addBal(total);
+    var wager = mode === "paid" ? bet : 0;
+    logHist(
+      cfg.key,
+      (mode === "fs"
+        ? 'Free game - <span class="hw">won ' + fmt(total) + "</span>"
+        : histLine(bet, total)) + (extra ? " - " + extra : ""),
+    );
+    recordRound(cfg.key, wager, total);
+    var isWin = mode === "paid" ? total > bet : total > 0;
+    if (isWin) {
+      setMsg(
+        cfg.key + "Msg",
+        (mode === "fs"
+          ? "Free game win: " + fmt(total) + " fun credits at " + st.curMult + " x."
+          : "You won " + fmt(total) + " fun credits.") + (extra ? " " + extra : ""),
+        "win",
+      );
+      var big = total >= bet * 10;
+      if (big) sfx.bigwin();
+      else sfx.win();
+      showWinBanner(
+        nxEl(cfg.scr),
+        big ? "Big Win" : "Win",
+        total,
+        big,
+        "x" + (total / Math.max(1, bet)).toFixed(1),
+      );
+      pushWin("You", total, cfg.name);
+    } else if (total > 0) {
+      setMsg(
+        cfg.key + "Msg",
+        "You won " + fmt(total) + " fun credits back on that spin." + (extra ? " " + extra : ""),
+        "info",
+      );
+      sfx.coin();
+    } else {
+      setMsg(
+        cfg.key + "Msg",
+        (mode === "paid" ? "No win this time. Spin again." : "No win on that free game.") +
+          " Balance: " +
+          fmt(bal) +
+          " fun credits.",
+        "lose",
+      );
+      sfx.lose();
+    }
+    renderBal(isWin);
+    if (st.fs > 0) {
+      fsBanner();
+      setTimeout(function () {
+        st.spinning = false;
+        spin();
+      }, 1100);
+    } else {
+      st.fsActive = false;
+      fsBanner();
+      st.spinning = false;
+      spinBtn.disabled = false;
+    }
+  }
+  function spin() {
+    if (st.spinning) return;
+    var mode = st.fs > 0 ? "fs" : "paid";
+    var bet;
+    if (mode === "fs") {
+      bet = st.fsBet;
+      st.fs--;
+      st.curMult = Math.random() < 0.5 ? 2 : 3;
+      st.fsActive = true;
+    } else {
+      bet = readBet(nxEl(cfg.key + "Bet"));
+      if (bet === null) return;
+      if (bet % 10 !== 0) {
+        bet = Math.max(10, Math.floor(bet / 10) * 10);
+        nxEl(cfg.key + "Bet").value = bet;
+      }
+      addBal(-bet);
+    }
+    st.spinning = true;
+    spinBtn.disabled = true;
+    fsBanner();
+    clearWins(cells);
+    var g = stripGrid(cfg.strip);
+    spinAnim(cells, g, cfg.blurWeights, function () {
+      var res = evalWays(g, cfg.pay, bet / 100, cfg.wild);
+      var sc = 0;
+      g.forEach(function (row) {
+        row.forEach(function (s) {
+          if (s === cfg.scatter) sc++;
+        });
+      });
+      var total = res.total;
+      var extra = "";
+      if (sc >= 3 && cfg.scatterPay) total += bet * (cfg.scatterPay[Math.min(sc, 5)] || 0);
+      if (cfg.jackpot5 && sc >= 5) {
+        total += bet * 100;
+        extra = "Five coins - fixed jackpot bonus of " + fmt(bet * 100) + " fun credits.";
+      }
+      if (mode === "fs") total = Math.floor(total * st.curMult);
+      else total = Math.floor(total);
+      markWins(cells, res.winCells);
+      if (sc >= 3 && cfg.fs) {
+        if (mode === "paid") {
+          st.fs = cfg.fs;
+          st.fsBet = bet;
+          st.fsWin = 0;
+          extra = (extra ? extra + " " : "") + sc + " coins trigger " + cfg.fs + " free games.";
+        } else {
+          st.fs += cfg.fs;
+          extra = (extra ? extra + " " : "") + sc + " coins add " + cfg.fs + " more free games.";
+        }
+      }
+      settle(bet, total, mode, extra);
+    });
+  }
+  spinBtn.addEventListener("click", spin);
+}
+waysSlot({
+  key: "prairie",
+  scr: "scr-prairie",
+  name: "Prairie Thunder",
+  wild: "wild",
+  scatter: "prsc",
+  strip: PRAIRIE_STRIP,
+  pay: {
+    clover: [1, 1, 4],
+    amber: [1, 2, 5],
+    lantern: [1, 3, 9],
+    ruby: [1, 5, 16],
+    bison: [4, 12, 43],
+    wild: [7, 22, 86],
+  },
+  scatterPay: { 3: 2, 4: 5, 5: 20 },
+  fs: 8,
+  jackpot5: true,
+  blurWeights: [
+    ["clover", 30],
+    ["amber", 23],
+    ["lantern", 17],
+    ["ruby", 12],
+    ["bison", 8],
+    ["wild", 7],
+    ["prsc", 3],
+  ],
 });
 v2NeonSlot({ key: "neon", scr: "scr-neon", name: "Neon Nights Slots" });
 v2BJ({

@@ -1,6 +1,6 @@
 # Multi Games Casino - free games
 
-Play 169 original games in your browser. 119 casino games share one
+Play 170 original games in your browser. 120 casino games share one
 credit balance, plus 50 free mind games that use no credits at all.
 
 **Play it live:** https://obaidasiaone-multi-games-casino.static.hf.space
@@ -14,7 +14,7 @@ notice shown once on first launch. Play for fun only.
 
 ## What is inside
 
-- **119 casino games**, each with its own bet limits, pay table, RTP and
+- **120 casino games**, each with its own bet limits, pay table, RTP and
   house edge shown in its How to play panel before you play.
 - **50 mind games** across memory, maths, logic, words and focus, all
   free, with best scores kept on your device.
@@ -37,12 +37,12 @@ notice shown once on first launch. Play for fun only.
 
 ## Game catalog summary
 
-169 games in 10 categories. The full list, with sub-category and the RTP
+170 games in 10 categories. The full list, with sub-category and the RTP
 as stated on the page for every game, is in `docs/GAME-CATALOG.md`.
 
 | Category | Games | What is in it |
 |---|---|---|
-| Slots | 24 | Video slots, jackpot slots, a classic 3-reel game and a cluster game |
+| Slots | 25 | Video slots, jackpot slots, a classic 3-reel game and a cluster game |
 | Table | 30 | Blackjack, roulette, baccarat, poker table games and card duels |
 | Dice | 14 | Dice totals, dice boards and dice risk games |
 | Wheel | 3 | Spin wheels, including Big Six Wheel |
@@ -52,7 +52,7 @@ as stated on the page for every game, is in `docs/GAME-CATALOG.md`.
 | Bingo and Lottery | 12 | Bingo, keno and lottery, and scratch cards |
 | Video Poker | 4 | Jacks-style, Deuces Wild, Bonus Poker and Tens or Better |
 | Mind | 50 | Memory (10), Maths (12), Logic (12), Words (8), Focus (8) |
-| **Total** | **169** | **119 casino games plus 50 free mind games** |
+| **Total** | **170** | **120 casino games plus 50 free mind games** |
 
 The lobby also shows 4 featured cards at the top. They are shortcuts to
 games already in the list above, not extra games.
@@ -134,7 +134,7 @@ Then open http://localhost:8000/index.html in a browser.
 
 For the install prompt and manifest to work locally, serve over
 localhost (as above) or HTTPS. Opening the file directly still plays
-all 169 games, but install features may not appear.
+all 170 games, but install features may not appear.
 
 ## Deploy
 
@@ -172,7 +172,7 @@ permissions Internet and view network state only.
 
 | Path | What it is |
 |---|---|
-| `index.html` | Lobby markup and all 169 game screens; loads the styles and scripts below in order |
+| `index.html` | Lobby markup and all 170 game screens; loads the styles and scripts below in order |
 | `css/` | 11 stylesheets: base, header, profiles, lobby, screens, game styles, install, phone fixes (see `docs/STRUCTURE.md`) |
 | `js/core/` | Shared logic: helpers, storage, profiles, balance, sound, lobby, navigation, stats |
 | `js/maths/` | Game maths: slot engine, shared helpers, card evaluators, game engines |
@@ -183,7 +183,7 @@ permissions Internet and view network state only.
 | `sitemap.xml` | Single-URL sitemap for search engines (the homepage) |
 | `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` | Original chip-and-star app icons (see note below) |
 | `docs/STRUCTURE.md` | Folder hierarchy, file load order, and the rules for editing safely |
-| `docs/GAME-CATALOG.md` | All 169 games with category, sub-category and stated RTP |
+| `docs/GAME-CATALOG.md` | All 170 games with category, sub-category and stated RTP |
 | `docs/FAIRNESS.md` | House-edge method, stats recording and verification notes |
 | `docs/DEPLOYMENT.md` | HuggingFace Space, GitHub Pages and APK build steps |
 | `android/` | Android WebView wrapper source (Gradle project) |
@@ -246,7 +246,7 @@ below.
 
 ## Original work note
 
-All 169 games, the lobby, the art, the icons and the docs in this repo
+All 170 games, the lobby, the art, the icons and the docs in this repo
 are original work built for this project. No game names, art, sounds or
 code were copied from JILI or any other game maker, and no brand assets
 are used. Where a game follows the well known rules of a classic game

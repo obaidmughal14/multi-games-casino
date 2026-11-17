@@ -2,6 +2,15 @@
 /* ================= lobby cards ================= */
 var GAMES = [
   {
+    id: "scr-prairie",
+    name: "Prairie Thunder",
+    cat: "slots",
+    art: "a-red",
+    icon: "s-bison",
+    hot: true,
+    desc: "Prairie reels, 1024 ways to win. Stacked symbols and free games at 2 x or 3 x.",
+  },
+  {
     id: "scr-fruit",
     name: "Fruit Fortune Slots",
     cat: "slots",
@@ -1623,6 +1632,7 @@ var GAMES = [
   },
 ];
 var RTPMAP = {
+  "scr-prairie": "RTP about 96%",
   "scr-fruit": "RTP about 96%",
   "scr-golden": "RTP about 95%",
   "scr-lucky7": "RTP about 95%",
@@ -1815,6 +1825,7 @@ var NEWIDS = {
   "scr-speedbingo": 1,
   "scr-coinflip": 1,
   "scr-jungle": 1,
+  "scr-prairie": 1,
   "scr-candy": 1,
   "scr-space": 1,
   "scr-lantern": 1,
@@ -1963,6 +1974,7 @@ var CATMAP2 = {
   "scr-ocean": ["slots", "Video Slots"],
   "scr-pharaoh": ["slots", "Video Slots"],
   "scr-jungle": ["slots", "Video Slots"],
+  "scr-prairie": ["slots", "Video Slots"],
   "scr-candy": ["slots", "Video Slots"],
   "scr-space": ["slots", "Video Slots"],
   "scr-lantern": ["slots", "Video Slots"],
@@ -2141,4 +2153,3 @@ function setMsgNearby(input, text) {
     m.className = "msg lose";
   }
 }
-

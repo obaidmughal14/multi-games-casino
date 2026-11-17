@@ -37,6 +37,7 @@ var SYM_SVG = {
   melon: "s-pearl",
   plum: "s-gem",
   star: "s-star",
+  bison: "s-bison",
 };
 var SYM_TXT = { bar: { t: "BAR", c: "#59c2ff" }, bar2: { t: "2BAR", c: "#ff8b96" } };
 function symHTML(code) {
@@ -176,4 +177,3 @@ function clearWins(cells) {
     });
   });
 }
-
